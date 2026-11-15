@@ -62,5 +62,23 @@ relop    : '<'
 
 ### Notes
 #### TODO:
-- Write parsers for our four new non-terminals (match new terminals and update `stmt` as well)
-- 
+1. Scanner
+- Add new keywords to `initKeywords`.
+- Add new relops to `initOperators`.
+
+2. Parser
+- Write parsers for new non-terminals (match new terminals, update `stmt` as well)
+- `parseRelop`
+- `parseBoolexpr`
+- `parseBlock`
+- Update `parseStmt` (one branch per statement)
+- Update `parse`: parse `block` -> match EOF.
+
+3. Nodes
+- New nodes: `NodeBlock`, `NodeRd`, `NodeRelop`, `NodeBoolexpr`, `NodeIf`, `NodeWhile`, (maybe `NodeBegin`/`NodeEnd`?)
+- `NodeWr` already exists (idk if it works)
+
+4. Test cases
+- TA1 tests all use the old `stmt` definition ending with `;`. Fix this.
+- TA1 tests use multiple prg files. Fix this.
+- Add test cases for each new keyword (rd, wr, relops, if, if/else, dangling else case, while, nested while, multi-stmt blocks, begin/end, comments).
