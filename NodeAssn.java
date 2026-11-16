@@ -1,4 +1,4 @@
-public class NodeAssn extends Node {
+public class NodeAssn extends NodeStmt {
 
 	private String id;
 	private NodeExpr expr;
