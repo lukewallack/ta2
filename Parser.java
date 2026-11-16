@@ -179,19 +179,92 @@ public class Parser {
 		return assn;
 	}
 
-	// This method parses a statement determined by our grammar:
-	// stmt  : assn ';'
+	//
+	// TODO
+	//
+	private NodeRelop parseRelop() throws SyntaxException {
+		for (String op : new String[] {"<", "<=", ">", ">=", "<>", "=="}) { // Match valid relops
+			if (curr().equals(new Token(op))) {
+				match(op);
+				return new NodeRelop(pos(), op);
+			}
+		}
+
+		// No relop matched, throw SyntaxException
+		throw new SyntaxException(pos(), new Token("relop"), curr());
+	}
+
+	//
+	// TODO
+	//
+	private NodeBoolexpr parseBoolexpr() throws SyntaxException {
+		NodeExpr left = parseExpr();
+		NodeRelop relop = parseRelop();
+		NodeExpr right = parseExpr();
+		return new NodeBoolexpr(left, relop, right);
+	}
+
+	// This method parses a statement, which has numerous forms.
+	// We must match each form accordingly, of which there are 6:
+	// rd, wr, if then, if then else, while do, begin end.
 	// Members:
 	//     scanner = advanced past parsed statement
 	// Returns: 
-	//     NodeStmt representing the parsed statement
+	//     Node representing the parsed statement
 	// Throws:
 	//     SyntaxException if no matching expression
-	private NodeStmt parseStmt() throws SyntaxException {
-		NodeAssn assn = parseAssn();
-		match(";");
-		NodeStmt stmt = new NodeStmt(assn);
-		return stmt;
+	private Node parseStmt() throws SyntaxException {
+		if (curr().equals(new Token("rd"))) {
+			match("rd");
+			Token id = curr();
+			match("id");
+			return new NodeRd(pos(), id.lex());
+		}
+		if (curr().equals(new Token("wr"))) {
+			match("wr");
+			return new NodeWr(parseExpr());
+		}
+		if (curr().equals(new Token("if"))) {
+			match("if");
+			NodeBoolexpr condition = parseBoolexpr();
+			match("then");
+			Node thenStmt = parseStmt();
+			Node elseStmt = null;	// Initially null, assign later if we parse an if/else.
+			if (curr().equals(new Token("else"))) {
+				match("else");
+				elseStmt = parseStmt();
+			}
+			return new NodeIf(condition, thenStmt, elseStmt);
+		}
+		if (curr().equals(new Token("while"))) {
+			match("while");
+			NodeBoolexpr condition = parseBoolexpr();
+			match("do");
+			return new NodeWhile(condition, parseStmt());
+		}
+		if (curr().equals(new Token("begin"))) {
+			match("begin");
+			NodeBlock block = parseBlock();
+			match("end");
+			return block;
+		}
+
+		return parseAssn(); // Final case, no matching keywords.
+	}
+
+	//
+	// TODO
+	//
+	private NodeBlock parseBlock() throws SyntaxException {
+		Node stmt = parseStmt();
+		NodeBlock block = null;
+
+		if (curr().equals(new Token(";"))) {
+			match(";");
+			block = parseBlock();
+		}
+		
+		return new NodeBlock(stmt, block);
 	}
 
 	// This method parses a whole program. It starts by creating a
@@ -207,9 +280,9 @@ public class Parser {
 	public Node parse(String program) throws SyntaxException {
 		scanner = new Scanner(program);
 		scanner.next();
-		NodeStmt stmt = parseStmt();
+		NodeBlock block = parseBlock();
 		match("EOF");
-		return stmt;
+		return block;
 	}
 
 }
