@@ -56,13 +56,17 @@ public class Environment {
 	// Returns:
 	//     A C source containing each variable in our environment.
 	public String toC() {
-		String s = "";
+		String declare = "double";
 		String sep = " ";
+		String init = "";
+
 		for (String v : map.keySet()) {
-			s += sep + v;
+			declare += sep + v;
 			sep = ",";
+			init += v + "=0;";
 		}
-		return s == "" ? "" : "double" + s + ";\nx=0;x=x;\n";
+
+		return map.isEmpty() ? "" : declare + ";\n" + init + "\n";
 	}
 
 }
