@@ -75,10 +75,14 @@ relop    : '<'
 - Update `parse`: parse `block` -> match EOF.
 
 3. Nodes
-- New nodes: `NodeBlock`, `NodeRd`, `NodeRelop`, `NodeBoolexpr`, `NodeIf`, `NodeWhile`, (maybe `NodeBegin`/`NodeEnd`?)
+- New nodes: `NodeBlock`, `NodeRd`, `NodeRelop`, `NodeBoolexpr`, `NodeIf`, `NodeWhile` (maybe `NodeBegin`/`NodeEnd`?)
 - `NodeWr` already exists (idk if it works)
 
 4. Test cases
 - TA1 tests all use the old `stmt` definition ending with `;`. Fix this.
 - TA1 tests use multiple prg files. Fix this.
 - Add test cases for each new keyword (rd, wr, relops, if, if/else, dangling else case, while, nested while, multi-stmt blocks, begin/end, comments).
+
+#### Currently working on/done:
+- created Nodes for new grammar additions
+- retyped NodeStmt to follow NodeFact since we now have different types of statements
