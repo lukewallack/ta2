@@ -20,7 +20,7 @@ public class NodeWhile extends Node {
 	}
 
 	public String code() {
-		return "while" + condition.code() + "{" + body.code() + "}";
+		return "while" + condition.code() + "{\n" + body.code() + "}\n";
 	}
 
 }

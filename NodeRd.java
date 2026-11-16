@@ -19,7 +19,7 @@ public class NodeRd extends Node {
 	}
 
 	public String code() {
-		return "scanf(\"%lf\",&" + id + ");";
+		return "scanf(\"%lf\",&" + id + ");\n";
 	}
 
 }

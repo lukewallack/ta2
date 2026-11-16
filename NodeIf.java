@@ -21,9 +21,9 @@ public class NodeIf extends Node {
 	}
 
 	public String code() {
-		String s = "if" + condition.code() + "{" + thenStmt.code() + "}";
+		String s = "if" + condition.code() + "{\n" + thenStmt.code() + "}\n";
 		if (elseStmt != null)
-			s += "else {" + elseStmt.code() + "}";
+			s += "else {\n" + elseStmt.code() + "}\n";
 
 		return s;
 	}
