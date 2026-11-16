@@ -1,4 +1,9 @@
 # Journal
+- currently struggling understanding purpose/usage of NodeRd
+- NodeWr was extends Node, changed to extend NodeStmt
+- NodeRd constructor must declare null initialized variables?
+- Add newline char to NodeRd code() return? In general, most code conversions lack newline characters which result in kinda ugly code output. Probably make this more pretty when everything works.
+
 ## Grammar
 Grammar1 (TA1):
 ```

@@ -1,18 +1,26 @@
 public class NodeWhile extends Node {
 
-	//private String id;
-	//private NodeExpr expr;
+	// while boolexpr do stmt
+	private NodeBoolexpr condition;
+	private Node body;	// Refer to the grammar. The stmt can be a block etc.
 
-	public NodeWhile() {
-		// TODO
+	public NodeWhile(NodeBoolexpr condition, Node body) {
+		this.condition = condition;
+		this.body = body;
 	}
 
 	public double eval(Environment env) throws EvalException {
-		// TODO
+		double d = 0.0;
+
+		while (condition.eval(env) != 0.0) {
+			d = body.eval(env);
+		}
+
+		return d;
 	}
 
 	public String code() {
-		// TODO
+		return "while" + condition.code() + "{" + body.code() + "}";
 	}
 
 }
