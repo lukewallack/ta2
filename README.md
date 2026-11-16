@@ -91,8 +91,6 @@ relop    : '<'
 #### Currently working on/done:
 - created Nodes for new grammar additions
 - retyped NodeStmt to follow NodeFact since we now have different types of statements
-- NodeBlock created
-
-
-do this:
-- NodeAssn
+- new Node's typed fully
+- updated Scanner + Parser to parse/scan new operators + keywords
+- Writing tests: `test-rd`, `test-wr`, `test-relop` (do for each relop), `test-boolexpr`, `test-if`, `test-ifelse`, `test-dangling-else`, `test-while`, `test-multi-stmt`, `test-begin-end`
