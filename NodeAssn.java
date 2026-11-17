@@ -13,7 +13,8 @@ public class NodeAssn extends Node {
 	}
 
 	public String code() {
-		return id + "=" + expr.code() + ";" + new NodeWr(expr).code();
+		return id + "=" + expr.code() + ";"
+			+ "printf(\"%g\\n\",(double)(" + id + "));";
 	}
 
 }

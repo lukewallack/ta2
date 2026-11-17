@@ -1,0 +1,9 @@
+# Fun test program that reads an input x and sums from 0 to x
+rd x;
+
+i = 0;
+while x <> 0 do
+    begin
+        i = i + x;
+        x = x - 1
+    end

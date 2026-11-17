@@ -1,0 +1,10 @@
+# Test if else with begin/end blocks in each
+x = 5;
+if x > 4 then
+    begin
+        wr 1
+    end
+else
+    begin
+        wr 2
+    end

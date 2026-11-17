@@ -93,4 +93,5 @@ relop    : '<'
 - retyped NodeStmt to follow NodeFact since we now have different types of statements
 - new Node's typed fully
 - updated Scanner + Parser to parse/scan new operators + keywords
-- Writing tests: `test-rd`, `test-wr`, `test-relop` (do for each relop), `test-boolexpr`, `test-if`, `test-ifelse`, `test-dangling-else`, `test-while`, `test-multi-stmt`, `test-begin-end`
+- Writing tests: `test-rd`, `test-wr`, `test-relop` (do for each relop), `test-ifelse`, `test-while`, `test-begin-end`
+- Tests for `if` and `ifelse` are unnecessary since we test that in relop tests.
