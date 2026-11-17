@@ -1,0 +1,5 @@
+test-if-branch-skip/gen.c: In function ‘main’:
+test-if-branch-skip/gen.c:4:5: error: ‘x’ undeclared (first use in this function)
+    4 |     x = 3.0;
+      |     ^
+test-if-branch-skip/gen.c:4:5: note: each undeclared identifier is reported only once for each function it appears in
