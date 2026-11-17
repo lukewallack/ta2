@@ -1,7 +1,7 @@
 public class NodeBlock extends Node {
 
-	private Node stmt;		// left, first statement in grammar
-	private NodeBlock block;	// remaining block
+	private Node stmt;			// left, first statement in grammar
+	private NodeBlock block;	// remaining block (stmt; block)
 
 	public NodeBlock(Node stmt, NodeBlock block) {
 		this.stmt = stmt;

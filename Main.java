@@ -1,8 +1,6 @@
 // This is the main class/method for the interpreter/compiler.
-// Each command-line argument is a complete program,
-// which is scanned, parsed, and evaluated.
-// All evaluations share the same environment,
-// so they can share variables.
+// An argument is a program which is scanned, parsed, and evaluated.
+// All arguments share the same environment.
 
 public class Main {
 

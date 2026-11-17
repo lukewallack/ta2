@@ -2,7 +2,7 @@ public class NodeWhile extends Node {
 
 	// while boolexpr do stmt
 	private NodeBoolexpr condition;
-	private Node body;	// Refer to the grammar. The stmt can be a block etc.
+	private Node body;	// Refer to the grammar. This stmt can be a block etc.
 
 	public NodeWhile(NodeBoolexpr condition, Node body) {
 		this.condition = condition;

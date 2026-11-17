@@ -162,7 +162,7 @@ public class Parser {
 		return expr;
 	}
 
-	// This method parses an assignmnet determined by our grammar:
+	// This method parses an assignment determined by our grammar:
 	// assn  : id '=' expr
 	// Members:
 	//     scanner = advanced past parsed assignment
@@ -179,9 +179,11 @@ public class Parser {
 		return assn;
 	}
 
-	//
-	// TODO
-	//
+	// This method parses all relational operators < <= > >= <> and ==.
+	// Returns:
+	//     NodeRelop containing the parsed relational operator
+	// Throws:
+	//     SyntaxException if no matching operator
 	private NodeRelop parseRelop() throws SyntaxException {
 		for (String op : new String[] {"<", "<=", ">", ">=", "<>", "=="}) { // Match valid relops
 			if (curr().equals(new Token(op))) {
@@ -194,9 +196,11 @@ public class Parser {
 		throw new SyntaxException(pos(), new Token("relop"), curr());
 	}
 
-	//
-	// TODO
-	//
+	// This method parses a bool expression in the form `expr relop expr`.
+	// Returns:
+	//     New NodeBoolexpr representing the parsed boolean expression
+	// Throws:
+	//     SyntaxException when there is no matching bool expression
 	private NodeBoolexpr parseBoolexpr() throws SyntaxException {
 		NodeExpr left = parseExpr();
 		NodeRelop relop = parseRelop();
@@ -252,9 +256,13 @@ public class Parser {
 		return parseAssn(); // Final case, no matching keywords.
 	}
 
-	//
-	// TODO
-	//
+	// Parses a block, which is essentially just a large chunk of code.
+	// Blocks can be a single statement, or a statement followed by a 
+	// semicolon and then another block.
+	// Returns:
+	//     New NodeBlock representing the parsed block of code
+	// Throws:
+	//     SyntaxException when there is no matching statement.
 	private NodeBlock parseBlock() throws SyntaxException {
 		Node stmt = parseStmt();
 		NodeBlock block = null;

@@ -1,22 +1,10 @@
-// This class provides a stubbed-out environment.
-// You are expected to implement the methods.
-// Accessing an undefined variable should throw an exception.
-
-// Hint!
-// Use the Java API to implement your Environment.
-// Browse:
-//   https://docs.oracle.com/javase/tutorial/tutorialLearningPaths.html
-// Read about Collections.
-// Focus on the Map interface and HashMap implementation.
-// Also:
-//   https://www.tutorialspoint.com/java/java_map_interface.htm
-//   http://www.javatpoint.com/java-map
-// and elsewhere.
 import java.util.*;
 
 public class Environment {
-
-	private Map<String, Double> map = new HashMap<String, Double>(); // map variables in our env to double values
+ 	// Map variables in our env to double values
+	private Map<String, Double> map = new HashMap<String, Double>();
+	// Contains every declared variable at parse time for C code generation
+	private static Set<String> declared = new HashSet<>();
 
 	// Inserts a key value pair into the map hashmap, with the variable 
 	// name as the key and double `val` as the value.
@@ -49,10 +37,16 @@ public class Environment {
 		return map.get(var);
 	}
 
+	// Adds a variable name to the declared set so that it will be declared
+	// in toC() for code generation.
+	public static void declare(String var) {
+		declared.add(var);
+	}
+
 	// This method generates a C program declaring the variables 
 	// in the environment, all of which are doubles.
 	// Members:
-	//     map = HashMap containing the environment's variables
+	//     declared = HashSet containing ALL variables declared in the environment.
 	// Returns:
 	//     A C source containing each variable in our environment.
 	public String toC() {
@@ -60,13 +54,13 @@ public class Environment {
 		String sep = " ";
 		String init = "";
 
-		for (String v : map.keySet()) {
+		for (String v : declared) {
 			declare += sep + v;
 			sep = ",";
 			init += v + "=0;";
 		}
 
-		return map.isEmpty() ? "" : declare + ";\n" + init + "\n";
+		return declared.isEmpty() ? "" : declare + ";\n" + init + "\n";
 	}
 
 }

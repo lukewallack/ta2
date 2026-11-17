@@ -1,4 +1,9 @@
+# README
+11/16 1 late day used (6/6)
+
 # Journal
+This section is meant for me to just write down my thoughts as I code. Ignore!
+
 - currently struggling understanding purpose/usage of NodeRd
 - NodeWr was extends Node, changed to extend NodeStmt
 - NodeRd constructor must declare null initialized variables?

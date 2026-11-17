@@ -1,3 +1,8 @@
+// NodeIf is a type of statement defined by if boolexpr then stmt
+// or if boolexpr then stmt else stmt. So, else is either null, or 
+// we have an else. The boolexpr is defined as a condition statement, 
+// and we evaluate the corresponding statement depending on the condition 
+// before returning it in eval.
 public class NodeIf extends Node {
 
 	private NodeBoolexpr condition;

@@ -5,6 +5,7 @@ public class NodeFactId extends NodeFact {
 	public NodeFactId(int pos, String id) {
 		this.pos=pos;
 		this.id=id;
+		Environment.declare(id);
 	}
 
 	public double eval(Environment env) throws EvalException {

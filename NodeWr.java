@@ -1,3 +1,5 @@
+// `wr` writes a value to stdout by using Java's
+// printf method.
 public class NodeWr extends Node {
 
 	private NodeExpr expr;
