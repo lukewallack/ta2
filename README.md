@@ -86,7 +86,7 @@ relop    : '<'
 4. Test cases
 - TA1 tests all use the old `stmt` definition ending with `;`. Fix this.
 - TA1 tests use multiple prg files. Fix this.
-- Add test cases for each new keyword (rd, wr, relops, if, if/else, dangling else case, while, nested while, multi-stmt blocks, begin/end, comments).
+- Add test cases for each new keyword (rd, wr, relops, if, if/else, while, multi-stmt blocks, begin/end, comments).
 
 #### Currently working on/done:
 - created Nodes for new grammar additions

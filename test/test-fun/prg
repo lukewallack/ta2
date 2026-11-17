@@ -2,7 +2,7 @@
 rd x;
 
 i = 0;
-while x <> 0 do
+while x > 0 do
     begin
         i = i + x;
         x = x - 1
